@@ -1,0 +1,87 @@
+<ui:composition template="resources/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <jsp:directive.page language="java"
+        contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+    <jsp:text>
+        <![CDATA[ <?xml version="1.0" encoding="ISO-8859-1" ?> ]]>
+    </jsp:text>
+    <jsp:text>
+        <![CDATA[ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> ]]>
+    </jsp:text>
+
+	<ui:define name="content">
+        <div id="page-wrapper" style="min-height: 100%">
+        <div class="container-fluid">
+        <h:form>
+			 <b:panelGrid colSpans="12">
+			        <h1 class="page-header">
+			            Bases de Dados <small>Endpoints SPARQL</small>
+			        </h1>
+			        <ol class="breadcrumb">
+						<li>
+						    <i class="fa fa-fw fa-home"/><a href="index.xhtml"> Início</a>
+						</li>
+						<li class="active">
+						    Bases
+						</li>
+			        </ol>
+			</b:panelGrid>
+			
+ 			<b:panelGrid colSpans="12">
+                <a href="ajuda.xhtml">
+                    <b:alert severity="info" closable="true">
+                    	<i class="fa fa-fw fa-info-circle"/>
+                    	<strong>Dúvidas?</strong>
+                    	Consulte nossa seção de ajuda para mais informações! 
+                    </b:alert>
+                </a>
+            </b:panelGrid>
+			
+            <b:panelGrid colSpans="12">
+				<b:panel collapsible="false" title="Cadastrar Base de Dados">
+					<h:outputLabel value="Endpoint SPARQL: " for="endpoint"/>
+					<b:inputText value="#{endpointBean.endpoint}" required="true" requiredMessage="É necesserário informam um URI para cadastrar o SPARQL endpoint"
+						tooltip="Insira a URL do SPARQL Endpoint em que deseja realizar buscas. Por exemplo: http://pt.dbpedia.org/sparql.">
+					     <f:facet name="prepend">
+					         <h:outputText value="URL" />
+					     </f:facet>
+					 </b:inputText>
+					<div class="pull-right">
+						<b:commandButton id="cadastrar" value="Cadastrar" look="primary" action="#{endpointBean.registerEndpoint}"/>
+					</div>
+					<br/><br/>
+					<p:messages id="message" showDetail="false"/>		
+				</b:panel>
+			</b:panelGrid>
+			
+ 			<b:panelGrid colSpans="12">
+               <b:alert severity="warning" closable="true">
+	               	<i class="fa fa-exclamation-triangle"></i>
+	               	Para cadastrar o <strong>Endpoint</strong> é necessário que o mesmo seja <strong>válido</strong> e esteja <strong>online</strong>.
+               </b:alert>
+            </b:panelGrid>			
+            
+			<b:panelGrid colSpans="12">
+            	<b:panel collapsible="false" title="Bases Cadastradas">
+            		<div class="table-responsive" style="max-height: 500px; overflow: auto;">
+            			<h:dataTable value="#{endpointBean.endpoints}" var="endpoint" class="table">
+            				<p:column>
+            					<h:outputText value="#{endpoint}"/>
+            				</p:column>
+            			</h:dataTable>
+            		</div>
+            	</b:panel>       
+            </b:panelGrid>
+            
+        </h:form>    
+		</div>
+		</div>
+	</ui:define>
+</ui:composition>

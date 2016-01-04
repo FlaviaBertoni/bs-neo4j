@@ -1,0 +1,190 @@
+<ui:composition template="resources/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <jsp:directive.page language="java"
+        contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+    <jsp:text>
+        <![CDATA[ <?xml version="1.0" encoding="ISO-8859-1" ?> ]]>
+    </jsp:text>
+    <jsp:text>
+        <![CDATA[ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> ]]>
+    </jsp:text>
+
+	<ui:define name="content">
+        <div id="page-wrapper" style="min-height: 100%">
+        <div class="container-fluid">
+			 <b:panelGrid colSpans="12">
+			        <h1 class="page-header">
+			            Busca Avançada <small>URIs e literais</small>
+			        </h1>
+			        <ol class="breadcrumb">
+						<li>
+						    <i class="fa fa-fw fa-home"/><a href="index.xhtml"> Início</a>
+						</li>
+						<li class="active">
+						    <i class="fa fa-fw fa-search"/> Buscas
+						</li>
+						<li class="active">
+						    Busca Avançada
+						</li>
+			        </ol>
+			</b:panelGrid>
+			
+ 			<b:panelGrid colSpans="12">
+                    <a href="ajuda.xhtml">
+                    <b:alert severity="info" closable="true">
+                    	<i class="fa fa-fw fa-info-circle"/>
+                    	<strong>Dúvidas?</strong>
+                    	Consulte nossa seção de ajuda para mais informações!
+                    </b:alert>
+                    </a>
+            </b:panelGrid>
+			
+            <b:panelGrid colSpans="12">
+					<b:panel collapsible="false" title="Busca">
+						<h:form>
+						  
+						  <b:panelGrid colSpans="10,2">
+						   		<h:panelGroup>
+						   			<h:outputLabel value="Endpoint: " for="endpoint"/>
+								   	<div class="input-group">
+									  <h:selectOneMenu id="endpoint" value="#{buscaAvancadaBean.endpoint}" 	class="form-control">
+									   	<p:ajax listener="#{buscaAvancadaBean.changeEndpoint}" update="predicado1 predicado2 predicado3 stateEndp"/>
+											<div class="input-group-addon">URL</div>
+								   			<f:selectItems
+								   				value="#{buscaAvancadaBean.endpoints}"
+												var="endpoint"
+												itemLabel="#{endpoint}"
+												itemValue="#{endpoint}" />
+								   		</h:selectOneMenu>
+								   	</div>
+						   		</h:panelGroup>
+						   		<h:panelGroup>
+									<h:outputLabel value="Estado: " for="stateEndp"/>
+									<b:inputText id="stateEndp" value="#{buscaAvancadaBean.status}" disabled="true"/>
+						   		</h:panelGroup>
+						   	</b:panelGrid>
+						   <br/>
+						   
+						   <!-- Busca parte 1 -->
+						   <div class="row">
+						   		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">						   	
+						   			<div class="input-group">
+						   				<span class="input-group-addon" data-toggle="tooltip" title="Para procurar exatamento o conteúdo digitado (incluindo maiúsculos e minúsculos) habilite essa opção.">
+								        	<h:selectBooleanCheckbox value="#{buscaAvancadaBean.exact1}"/>
+								      	</span>
+						   				<b:inputText placeholder="Insira sua busca aqui..." value="#{buscaAvancadaBean.busca1}" required="true"
+						   				requiredMessage="É necessário informar pelo menos a primeira busca."/>
+						   			</div>
+						   		</div>
+					   			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+									<h:selectOneMenu id="predicado1" value="#{buscaAvancadaBean.predicate1}" class="form-control" required="true"
+									requiredMessage="É necessário informar pelo menos o predicado da primeira busca.">
+						   				<f:selectItem itemLabel="predicado" itemDisabled="true"/>
+						   				<f:selectItems
+							   				value="#{buscaAvancadaBean.predicates}"
+											var="p"
+											itemLabel="#{p.localName}"
+											itemValue="#{p.uri}" 
+						   				/>						   				
+						   			</h:selectOneMenu>	   			
+					   			</div>					   		
+						   	</div>
+						   	<br/> 
+						   	
+							<!-- Busca parte 2 -->					
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						   			<h:selectOneMenu id="links2" value="#{buscaAvancadaBean.link1}"
+									   	class="form-control">
+									   	<p:ajax listener="#{buscaAvancadaBean.checkLinks}" update="link2"/>
+						   				<f:selectItems
+							   				value="#{buscaAvancadaBean.links1}"
+											var="link"
+											itemLabel="#{link}"
+											itemValue="#{link}" 
+						   				/>
+						   			</h:selectOneMenu>								
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+						   			<div class="input-group">
+						   				<span class="input-group-addon" data-toggle="tooltip" title="Para procurar exatamento o conteúdo digitado (incluindo maiúsculos e minúsculos) habilite essa opção.">
+								        	<h:selectBooleanCheckbox value="#{buscaAvancadaBean.exact2}"/>
+								      	</span>
+						   				<b:inputText placeholder="Insira sua busca aqui..." value="#{buscaAvancadaBean.busca2}"/>
+						   			</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+									<h:selectOneMenu id="predicado2" value="#{buscaAvancadaBean.predicate2}" class="form-control">
+						   				<f:selectItem itemLabel="predicado" itemDisabled="true"/>
+						   				<f:selectItems
+							   				value="#{buscaAvancadaBean.predicates}"
+											var="p"
+											itemLabel="#{p.localName}"
+											itemValue="#{p.uri}" 
+						   				/>						   				
+						   			</h:selectOneMenu>	
+								</div>
+							</div>
+							<br/>
+							
+							<!-- Busca parte 3 -->
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						   			<h:selectOneMenu id="link2" value="#{buscaAvancadaBean.link2}" class="form-control">
+						   				<f:selectItems
+							   				value="#{buscaAvancadaBean.links2}"
+											var="link"
+											itemLabel="#{link}"
+											itemValue="#{link}" 
+						   				/>
+						   			</h:selectOneMenu>								
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+						   			<div class="input-group">
+						   				<span class="input-group-addon" data-toggle="tooltip" title="Para procurar exatamento o conteúdo digitado (incluindo maiúsculos e minúsculos) habilite essa opção.">
+								        	<h:selectBooleanCheckbox value="#{buscaAvancadaBean.exact3}"/>
+								      	</span>
+						   				<b:inputText placeholder="Insira sua busca aqui..." value="#{buscaAvancadaBean.busca3}"/>
+						   			</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+									<h:selectOneMenu id="predicado3" value="#{buscaAvancadaBean.predicate3}" class="form-control">
+						   				<f:selectItem itemLabel="predicado" itemDisabled="true"/>
+						   				<f:selectItems
+							   				value="#{buscaAvancadaBean.predicates}"
+											var="p"
+											itemLabel="#{p.localName}"
+											itemValue="#{p.uri}" 
+						   				/>						   				
+						   			</h:selectOneMenu>
+								</div>
+							</div>
+							<br/>					   	
+						   	<div class="pull-right">
+						   		<b:commandButton value="Buscar" look="primary" action="#{buscaAvancadaBean.buscaAvancada()}"/>
+						   	</div> 	
+						</h:form>
+						<br/>
+						<p:messages id="message" showDetail="false"/>
+					</b:panel>
+			</b:panelGrid>
+			
+			<b:panelGrid colSpans="12">
+                   <a href="bases.xhtml">
+                    <b:alert severity="info" closable="false">
+                    	<i class="fa fa-fw fa-info-circle"/>
+                    	Para <strong>inserir</strong> um novo <strong>SPARQL Endpoint</strong> clique aqui. 
+                    </b:alert>
+                    </a>
+            </b:panelGrid>
+		</div>
+		</div>
+	</ui:define>
+</ui:composition>

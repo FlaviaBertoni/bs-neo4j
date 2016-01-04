@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:ui="http://java.sun.com/jsf/facelets"
+          xmlns:b="http://bootsfaces.net/ui" 
+          xmlns:p="http://primefaces.org/ui" 
+          xmlns:h="http://java.sun.com/jsf/html">
+    <jsp:directive.page language="java"
+        contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+    <jsp:text>
+        <![CDATA[ <?xml version="1.0" encoding="ISO-8859-1" ?> ]]>
+    </jsp:text>
+    <jsp:text>
+        <![CDATA[ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> ]]>
+    </jsp:text>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Grafo</title>
+	<!-- ________________________________Importações________________________________ -->
+	<!-- Bootstrap (CSS)-->
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<!-- Jquery -->
+	<script src="resources/js/jquery.js"></script>
+	<!-- Bootstrap (JS)-->
+	<script src="resources/js/bootstrap.min.js"></script>
+	<!-- D3 -->
+	<script src="resources/js/d3.min.js"></script>
+	<!-- Grafo -->
+	<script src="resources/js/interactiveGraph.js"></script>
+	<!-- ______________________________________________________________________________ -->
+	<style>
+		.node {
+		  stroke: #fff;
+		  stroke-width: 1.5px;
+		}
+		text {
+		  font: 4px sans-serif;
+		  pointer-events: none;
+		  text-anchor: middle;
+		  stroke: none;
+		}
+		.link {
+		  stroke: #ccc;
+		  stroke-opacity: .6;
+		}
+	</style>
+</h:head>
+<h:body>
+	<div style="min-height:100%; background-color: #fff">   
+    	<div class="pull-right">
+   			 <a href="resultadoBL.xhtml" style="font-size:1.5em; margin-right:1em; margin-top:1em"><b:iconAwesome name="times"/> </a>
+   			 <br/>
+    	</div>
+		<div class="container" style="text-align:center;">
+		<div id="graph"></div></div>				
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+		#{buscaLocalBean.graph}
+	</div>
+</h:body>
+</html>
+</jsp:root>

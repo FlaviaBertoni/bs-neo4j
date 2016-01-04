@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:ui="http://java.sun.com/jsf/facelets"
+          xmlns:b="http://bootsfaces.net/ui" 
+          xmlns:p="http://primefaces.org/ui" 
+          xmlns:h="http://java.sun.com/jsf/html">
+    <jsp:directive.page language="java"
+        contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+    <jsp:text>
+        <![CDATA[ <?xml version="1.0" encoding="ISO-8859-1" ?> ]]>
+    </jsp:text>
+    <jsp:text>
+        <![CDATA[ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> ]]>
+    </jsp:text>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>BS Neo4j</title>
+	<!-- ________________________________Importações________________________________ -->
+	<!-- Bootstrap (CSS)-->
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<!-- Admin CSS (CSS com modificações) -->
+    <link href="resources/css/sb-admin.css" rel="stylesheet"/>
+    <!-- Font Awesome (CSS) -->
+    <link href="resources/css/font-awesome.min.css" rel="stylesheet"/>
+	<!-- Jquery -->
+	<script src="resources/js/jquery.js"></script>
+	<!-- Bootstrap (JS)-->
+	<script src="resources/js/bootstrap.min.js"></script>
+	<!-- D3 -->
+	<script src="resources/js/d3.min.js"></script>
+	<!-- Graph (JS e CSS) -->
+	<link href="resources/css/buildgraph.css" rel="stylesheet"/>
+	<!-- ______________________________________________________________________________ -->
+</h:head>
+<h:body>
+<div id="wrapper">
+    <!-- Menu -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">BS Neo4j</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li>
+                    <a href="index.xhtml"><i class="fa fa-fw fa-home"/> Início</a>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo">
+                    <i class="fa fa-search"/> Buscas 
+                    <i class="fa fa-caret-down fa-fw"/></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="buscaSimples.xhtml">Busca Simples</a>
+                        </li>
+                        <li>
+                            <a href="buscaAvancada.xhtml">Busca Avançada</a>
+                        </li>
+                        <li>
+                            <a href="buscaLocal.xhtml">Busca Local</a>
+                        </li>
+                        <li>
+                            <a href="terminal.xhtml">Terminal</a>
+                        </li>						
+                    </ul>
+                </li>
+                <li>
+                    <a href="bases.xhtml"><i class="fa fa-fw fa-cloud"/> Bases</a>
+                </li>
+                <li>
+                    <a href="sobre.xhtml"><i class="fa fa-fw fa-info-circle"/> Sobre</a>
+                </li>					
+                <li>
+                    <a href="ajuda.xhtml"><i class="fa fa-fw fa-question-circle"/> Ajuda</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <ui:insert name="content">Espaço para o conteúdo da tela</ui:insert>
+</div>
+</h:body>
+</html>
+</jsp:root>

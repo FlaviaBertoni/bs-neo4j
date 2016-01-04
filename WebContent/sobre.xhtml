@@ -1,0 +1,66 @@
+<ui:composition template="resources/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <jsp:directive.page language="java"
+        contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+    <jsp:text>
+        <![CDATA[ <?xml version="1.0" encoding="ISO-8859-1" ?> ]]>
+    </jsp:text>
+    <jsp:text>
+        <![CDATA[ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> ]]>
+    </jsp:text>
+
+	<ui:define name="content">
+        <div id="page-wrapper" style="min-height: 100%">
+        <div class="container-fluid">
+        <h:form>
+			 <b:panelGrid colSpans="12">
+			        <h1 class="page-header">
+			            Sobre
+			        </h1>
+			        <ol class="breadcrumb">
+						<li>
+						    <i class="fa fa-fw fa-home"/><a href="index.xhtml"> Início</a>
+						</li>
+						<li class="active">
+						    Sobre
+						</li>
+			        </ol>
+			        <br/>
+			        <p class="lead">Este sistema foi desenvolvido como parte da monografia apresentada ao Instituto Federal de Educação, Ciência e Tecnologia de São Paulo - Campus Bragança Paulista, como requisito parcial para a obtenção do título de Tecnólogo em Análise e Desenvolvimento de Sistemas.</p>
+					<br/>
+			</b:panelGrid>
+			
+			<b:panelGrid colSpans="12">
+            	<b:panel collapsible="false" title="Resumo da Monografia">
+            	 <div>
+            	 Com o crescimento da Internet, novas soluções e tecnologias vem sendo propostas. Várias delas relacionadas à disponibilização de dados. Dentre elas, há o projeto Linked Open Data (LOD) o qual une dados abertos com dados interligados, disponibilizados em um formato conveniente para que possam ser combinados e reutilizados, proporcionando resultados mais relevantes. É nesse contexto que o presente trabalho propõe contornar dois problemas relacionados à utilização de endpoints da nuvem LOD: o primeiro relacionado à disponibilidade dos mesmos e o segundo a necessidade de conexão com a Internet. Com a utilização de várias tecnologias, propõe-se a implementação de um sistema Web utilizando a linguagem Java, com funcionalidades que permitem realizar consultas SPARQL em endpoints, processar os dados retornados e inseri-los no banco de dados de grafos Neo4j. Dessa maneira, torna-se possível consultas posteriores na base local, inclusive em caso de indisponibilidade do endpoint ou de conexão com a Internet.
+            	 <br/><br/>
+            	 <strong>Palavras-chave:</strong> Linked Open Data. SPARQL. Endpoint. Banco de Dados de Grafos. Neo4j. 
+            	 </div>
+            	</b:panel>       
+            </b:panelGrid>
+            
+            <b:panelGrid colSpans="12">
+            	<b:panel collapsible="false" title="Desenvolvedores">
+            		<address>
+					  <strong>Flávia Bertoni</strong><br/>
+					  <a href="mailto:flavia.boava.bertoni@gmail.com">flavia.boava.bertoni@gmail.com</a>
+					</address>
+            		<address>
+					  <strong>Raphael Magalhães</strong><br/>
+					  <a href="mailto:raphael.sdm@gmail.com">raphael.sdm@gmail.com</a>
+					</address>
+            	</b:panel>
+            </b:panelGrid>
+        </h:form>    
+		</div>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,117 @@
+<ui:composition template="resources/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <jsp:directive.page language="java"
+        contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+    <jsp:text>
+        <![CDATA[ <?xml version="1.0" encoding="ISO-8859-1" ?> ]]>
+    </jsp:text>
+    <jsp:text>
+        <![CDATA[ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> ]]>
+    </jsp:text>
+
+	<ui:define name="content">
+        <div id="page-wrapper" style="min-height:100%">
+        <div class="container-fluid">
+        <h:form id="form">
+
+			 <b:panelGrid colSpans="12">
+			        <h1 class="page-header">
+			            Resultado <small>busca avançada</small>
+			        </h1>
+			        <ol class="breadcrumb">
+						<li>
+						    <i class="fa fa-home"/><a href="index.xhtml"> Início</a>
+						</li>
+						<li>
+						    <i class="fa fa-search"/> Buscas
+						</li>
+						<li>
+						    <a href="buscaAvancada.xhtml">Busca Avançada</a>
+						</li>
+						<li class="active">
+						    Resultado da Busca Avançada
+						</li>
+			        </ol>
+			</b:panelGrid>
+			
+			<b:panelGrid colSpans="12">
+				<b:panel collapsible="false" title="Triplas Retornadas">	
+					<div class="table-responsive" style="max-height: 500px; overflow: auto;">
+						
+						    <p:dataTable id="dataTable" value="#{buscaAvancadaBean.triplas}" var="tripla" rowKey="#{tripla.sujeito}"
+						    			paginator="true" rows="5" paginatorPosition="bottom"
+						    			reflow="true" style="max-height:100%"
+						    			selectionMode="single" selection="#{buscaAvancadaBean.selectedURI}">
+								<p:ajax event="rowSelect" listener="#{buscaAvancadaBean.onRowSelect}" update=":form:amodal"/>
+						        <p:column headerText="Sujeito" sortBy="#{tripla.sujeito}">
+						            <h:outputText value="#{tripla.sujeito}" />
+						        </p:column>
+						        <p:column headerText="Predicado" sortBy="#{tripla.predicado}">
+						            <h:outputText value="#{tripla.predicado}" />
+						        </p:column>
+						        <p:column headerText="Objeto" sortBy="#{tripla.objeto}">
+						            <h:outputText value="#{tripla.objeto}" />
+						        </p:column>
+							</p:dataTable>
+							<br/>
+					</div>
+					<div style="text-align: right">
+						<b:button value="Detalhes" look="primary" icon="plus" onclick="$('.modalPseudoClass').modal();return false;"/>
+					</div>
+				</b:panel>
+			</b:panelGrid>        
+        	
+        	<b:panelGrid colSpans="12">
+				<b:panel collapsible="false" title="Visualização em Grafo">
+				<div class="container" style="text-align:center; max-width: 600px;">
+				<div id="graph"></div></div>
+				<style>
+					.node {
+					  stroke: #fff;
+					  stroke-width: 1.5px;
+					}
+					.link {
+					  stroke: #ccc;
+					  stroke-opacity: .6;
+					}
+				</style>				
+				#{buscaAvancadaBean.graph}
+				<script src="resources/js/staticGraph.js"></script>	
+					<div class="pull-right">
+						<h:form>
+							<h:link outcome="visualizacaoBA">
+								<span> interagir </span><b:iconAwesome name="arrow-circle-right"/>
+							</h:link>
+						</h:form>
+					</div>
+				</b:panel>
+			</b:panelGrid>
+			
+			<b:modal id="amodal" title="Detalhes" styleClass="modalPseudoClass" size="modal-lg">
+			    <div class="table-responsive">
+				    <h:dataTable value="#{buscaAvancadaBean.selectedNode.properties}" var="p" class="table">
+				    	<p:column>
+				    		<h:outputText value="#{p.propertyName}" style="font-weight:bold"/>
+				    	</p:column>
+				    	<p:column>
+				    		<h:outputText value="#{p.allPropertyValues}"/>
+				    	</p:column>
+				    </h:dataTable>
+			    </div>
+			    <f:facet name="footer">
+			        <b:button value="fechar" dismiss="modal" onclick="return false;"/>
+			    </f:facet>
+			</b:modal>
+		</h:form>  
+			 
+        </div>
+        </div>  
+    </ui:define>
+</ui:composition>
